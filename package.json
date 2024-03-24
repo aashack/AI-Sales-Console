@@ -1,0 +1,22 @@
+{
+  "name": "aisales-momentum",
+  "version": "1.0.0",
+  "description": "A coding challenge ultilizing AI to analyse sales data",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "colors": "^1.4.0",
+    "date-and-time": "^3.1.1",
+    "dotenv": "^16.3.1",
+    "inquirer": "^9.2.16",
+    "openai": "^3.3.0",
+    "prompts": "^2.4.2",
+    "readline-sync": "^1.4.10"
+  }
+}
