@@ -4,6 +4,9 @@ import { exec } from 'child_process';
 import readlineSync from 'readline-sync';
 import colors from 'colors';
 import openai from './src/config/open-ai.js';
+import generateSalesConversation  from './src/files/generateSampleData.js'
+
+let selectedFile;
 
 // Function to generate sample data
 async function generateSampleData() {
@@ -16,7 +19,7 @@ async function generateSampleData() {
 
 // Function to select sample data file
 async function selectSampleData() {
-    const folderPath = '../chats'; // Change this to your folder path
+    const folderPath = './chats'; // Change this to your folder path
     try {
         const files = await fs.readdir(folderPath);
         if (files.length === 0) {
@@ -36,6 +39,8 @@ async function selectSampleData() {
             await mainMenu();
             return;
         }
+
+        selectedFile = answers.selectedFile;
         console.log("You selected:", answers.selectedFile);
         // You can perform actions with the selected file here
         await mainMenu();
@@ -52,7 +57,7 @@ async function askQuestionsAboutData() {
     let data = [];
     console.log("Asking questions about data...");
     try {
-        const data = await fs.readFile('../chats/Olivia-Grace-sale.txt', { encoding: 'utf8' });
+        const data = await fs.readFile(`./chats/${selectedFile}`, { encoding: 'utf8' });
         chatHistory.push(['user', data]);
       } catch (err) {
         console.log(err);
@@ -95,6 +100,7 @@ async function askQuestionsAboutData() {
           chatHistory.push(['assistant', completionText]);
         } catch (error) {
           console.error(colors.red(error));
+          console.log(process.env.OPENAI_API_KEY)
         }
       }
     await mainMenu();
@@ -102,33 +108,37 @@ async function askQuestionsAboutData() {
 
 // Main menu
 async function mainMenu() {
-    // Clear the terminal screen
-    console.clear();
-    
-    // Show the main menu
-    const answers = await inquirer.prompt([
-        {
-            type: 'list',
-            name: 'option',
-            message: 'Select an option:',
-            choices: ['Generate Sample Data', 'Select Sample Data', 'Ask Questions About Data', 'Exit']
-        }
-    ]);
+    while(true) {
+        // Clear the terminal screen
+        console.clear();
+        
+        // Show the main menu
+        const answers = await inquirer.prompt([
+            {
+                type: 'list',
+                name: 'option',
+                message: 'Welcome to this ChatGPT Sales Analyzer \nPlease select an option from below:',
+                choices: ['Generate Sample Data', 'Select Sample Data', 'Ask Questions About Data', 'Exit']
+            }
+        ]);
 
-    switch (answers.option) {
-        case 'Generate Sample Data':
-            await generateSampleData();
-            break;
-        case 'Select Sample Data':
-            await selectSampleData();
-            break;
-        case 'Ask Questions About Data':
-            await askQuestionsAboutData();
-            break;
-        case 'Exit':
-            console.log('Exiting...');
-            return;
+        switch (answers.option) {
+            case 'Generate Sample Data':
+                console.log("Generating Sample Sales, Please Wait")
+                await generateSalesConversation();
+                break;
+            case 'Select Sample Data':
+                await selectSampleData();
+                break;
+            case 'Ask Questions About Data':
+                await askQuestionsAboutData();
+                break;
+            case 'Exit':
+                console.log('Exiting...');
+                break;
+        }
     }
+
 }
 
 // Start the program
