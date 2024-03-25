@@ -1,3 +1,9 @@
+// Partily AI Generated Code, I used chatgpt to generate arrays of names, websites, cities and nouns to use
+// with my generateSampleData code. I didn't want to spend an hour thinking up all these.
+// The Randomizer is something I put toghether, it will allow it to generate consisted but varied data
+// to be used across the application.
+
+
 export const FIRSTNAMES = [
     'John', 'Emma', 'Michael', 'Sophia', 'William',
     'Olivia', 'James', 'Ava', 'Alexander', 'Isabella',

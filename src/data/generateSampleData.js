@@ -1,4 +1,4 @@
-import { getRandomFirstName, getRandomItem, getRandomCurrency, getRandomCanadianCity, getRandomPopularWebsite} from '../data/sampleData.js'
+import { getRandomFirstName, getRandomItem, getRandomCurrency, getRandomCanadianCity, getRandomPopularWebsite} from './sampleData.js'
 import openai from '../config/open-ai.js';
 import fs from 'node:fs/promises';
  

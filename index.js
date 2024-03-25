@@ -4,18 +4,10 @@ import { exec } from 'child_process';
 import readlineSync from 'readline-sync';
 import colors from 'colors';
 import openai from './src/config/open-ai.js';
-import generateSalesConversation  from './src/files/generateSampleData.js'
+import generateSalesConversation  from './src/data/generateSampleData.js'
 
 let selectedFile;
-
-// Function to generate sample data
-async function generateSampleData() {
-    console.log("Generating sample data...");
-    // Write your logic for generating sample data here
-    await new Promise(resolve => setTimeout(resolve, 2000)); // Simulating a delay, replace with your actual logic
-    console.log("Sample data generated successfully!");
-    await mainMenu();
-}
+let currentChatHistory = [];
 
 // Function to select sample data file
 async function selectSampleData() {
@@ -52,6 +44,7 @@ async function selectSampleData() {
 
 // Function to ask questions about data
 async function askQuestionsAboutData() {
+    currentChatHistory = [];
     const chatHistory = []; 
     const directoryPath = '/chats';
     let data = [];
@@ -60,12 +53,14 @@ async function askQuestionsAboutData() {
         const data = await fs.readFile(`./chats/${selectedFile}`, { encoding: 'utf8' });
         chatHistory.push(['user', data]);
       } catch (err) {
-        console.log(err);
+        console.log('No Chat history has been selected');
+        currentChatHistory = [];
+        return;
       }
       const indexName = 'my-data-index';
       chatHistory.push(['user', data]);
       while (true) {
-        // console.log(chatHistory)
+        
         const userInput = readlineSync.question(colors.yellow('You: '));
     
         try {
@@ -74,6 +69,8 @@ async function askQuestionsAboutData() {
             role,
             content,
           }));
+
+          console.log(messages)
           // console.log(messages)
           // Add latest user input
           messages.push({ role: 'user', content: userInput });
@@ -103,6 +100,7 @@ async function askQuestionsAboutData() {
           console.log(process.env.OPENAI_API_KEY)
         }
       }
+      currentChatHistory = messages
     await mainMenu();
 }
 
@@ -112,12 +110,15 @@ async function mainMenu() {
         // Clear the terminal screen
         console.clear();
         
+        let fileNotificationText = `Current Selected file: ${selectedFile}\n`;
+        let chatHistoryText = `You Currently a saved chat, starting a new chat will override existing one\n`;
+
         // Show the main menu
         const answers = await inquirer.prompt([
             {
                 type: 'list',
                 name: 'option',
-                message: 'Welcome to this ChatGPT Sales Analyzer \nPlease select an option from below:',
+                message: `\nWelcome to this ChatGPT Sales Analyzer\n${(selectedFile) ? fileNotificationText : ``}\n${(currentChatHistory.length !== 0) ? chatHistoryText : ``}\nPlease select an option from below: `,
                 choices: ['Generate Sample Data', 'Select Sample Data', 'Ask Questions About Data', 'Exit']
             }
         ]);
@@ -135,10 +136,9 @@ async function mainMenu() {
                 break;
             case 'Exit':
                 console.log('Exiting...');
-                break;
+                return;
         }
     }
-
 }
 
 // Start the program
