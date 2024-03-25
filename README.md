@@ -1,3 +1,6 @@
+
+# This isn't completed yet
+
 ### AISales-momentum
 An application that leverages OpenAI GPT APIs to generate and analyze sales call transcripts.
 
@@ -18,3 +21,12 @@ I will be aproaching this challege by:
 3) Build a method to summarize a file that was generated, have a pre-made template prompt that will setup the organization structure
 4) API to save the summary to the database
 5) Have a chat to bot capability that will reference the sales chat
+
+
+
+
+In order to get this running it is just
+
+1) create an .env file and add your OpenAI token
+2) npm i
+3) npm start
