@@ -21,7 +21,7 @@ export const viewSummary = async (data) => {
     if(!data) {
         console.log(`\nNo Data Selected\nFirst Select Some Sample Data\n`);
     } else {
-
+        console.log(`\nSummary of your selected chat\n\n`);
         let summary = await generateText(summaryPrompt, data)
         console.log(`\n${summary}\n`);
         summaryResponse = summary
@@ -32,7 +32,7 @@ export const viewSummary = async (data) => {
         {
             type: 'list',
             name: 'viewSummary',
-            message: 'Summary of the Sale',
+            message: 'Press enter to go back.',
             choices: ['Go back']
         }
     ]);

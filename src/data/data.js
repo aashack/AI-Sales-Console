@@ -3,6 +3,7 @@ import openai from '../config/open-ai.js';
 import fs from 'node:fs/promises';
 import inquirer from 'inquirer';
 
+const chatFolderPath = '../../chats'; 
 
 /**
  * A randomized prompt used for chatGPT, it pulls values from a randomizer to add variety
@@ -79,7 +80,7 @@ export const viewSalesData = async (data) => {
         {
             type: 'list',
             name: 'viewSalesData',
-            message: 'Currently Selected Sales Data',
+            message: 'Press Enter to go back.',
             choices: ['Go back']
         }
     ]);
@@ -101,4 +102,5 @@ export const generateSalesConversation = async () => {
     await saveToFile(result, `${newPrompt.nameOne}-${newPrompt.nameTwo}-sale`);
 }
 
-export default {generateSalesConversation, viewSalesData};
+
+export default { generateSalesConversation, viewSalesData };

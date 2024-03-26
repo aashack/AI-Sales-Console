@@ -3,11 +3,10 @@ import fs from 'node:fs/promises';
 import readlineSync from 'readline-sync';
 import colors from 'colors';
 import openai from './src/config/open-ai.js';
-import {viewSalesData, generateSalesConversation}  from './src/data/generateSampleData.js'
+import {viewSalesData, generateSalesConversation}  from './src/data/data.js'
 import viewSummary from './src/summary/summarize.js';
 
 let selectedFile;
-let currentChatHistory;
 let selectedChatHistory;
 
 // Function to select sample data file
@@ -37,6 +36,8 @@ async function selectSampleData() {
         selectedFile = answers.selectedFile;
         selectedChatHistory = await fs.readFile(`./chats/${selectedFile}`, { encoding: 'utf8' });
         console.log("You selected:", answers.selectedFile);
+
+        // return to menu
         await mainMenu();
     } catch (err) {
         console.error("Error reading folder/file:", err);
@@ -50,14 +51,15 @@ async function askQuestionsAboutData() {
 
     console.log("\nEnter your inquiries about this Sale:\n\n");
     try {
-        console.log(selectedChatHistory);
+        // console.log(selectedChatHistory);
         const data = await fs.readFile(`./chats/${selectedFile}`, { encoding: 'utf8' });
         chatHistory.push(['user', data]);
     } catch (err) {
-        console.log('No Chat history has been selected');
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        console.log(colors.yellow('No Chat history has been selected'));
+        await new Promise(resolve => setTimeout(resolve, 2000));
         return;
     }
+    console.log(`${selectedChatHistory}\n\n`);
     // push the chat history to the list so the AI can injest the info.
     chatHistory.push(['user', selectedChatHistory]);
 
@@ -104,7 +106,6 @@ async function askQuestionsAboutData() {
             console.error(colors.red(error)); 
         }
     }
-    currentChatHistory = messages
     await mainMenu();
 }
 // Main menu 
@@ -113,7 +114,7 @@ async function mainMenu() {
         // Clear the terminal screen
         console.clear();
         
-        let fileNotificationText = `Current Selected file: ${colors.green(selectedFile)}\n`;
+        let fileNotificationText = `\nCurrent Selected file: ${colors.green(selectedFile)}\n`;
 
         // Show the main menu
         const answers = await inquirer.prompt([
@@ -124,6 +125,7 @@ async function mainMenu() {
                 choices: ['Generate Sample Data', 'Select Sample Data', 'View Sales Chat', 'Summarize', 'Ask Questions About Data', 'Exit']
             }
         ]);
+
         // Switch statement that determines what menu Item does what
         // inquirer generates a object based on your selection, 
         // answers.<name> = choice
@@ -146,7 +148,7 @@ async function mainMenu() {
                 break;
             case 'Exit':
                 console.log('Exiting...');
-                return;
+                process.exit();
         }
     }
 }
