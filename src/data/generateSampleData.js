@@ -1,8 +1,19 @@
 import { getRandomFirstName, getRandomItem, getRandomCurrency, getRandomCanadianCity, getRandomPopularWebsite} from './sampleData.js'
 import openai from '../config/open-ai.js';
 import fs from 'node:fs/promises';
- 
+import inquirer from 'inquirer';
 
+
+/**
+ * A randomized prompt used for chatGPT, it pulls values from a randomizer to add variety
+ * @returns It returns an object because I needed the names to save their files (unique name)
+ * {
+ *  prompt: String
+ *  nameOne: String
+ *  nameTwo: String
+ * 
+ * }         
+ */
 export const gptPrompt = async () => {
     let nameOne = getRandomFirstName();
     let nameTwo = getRandomFirstName();
@@ -13,6 +24,11 @@ export const gptPrompt = async () => {
     }
 }
 
+/**
+ * 
+ * @param {String} prompt - the pregenerated prompt 
+ * @returns Several lines of dialog outlining a Sale
+ */
 export const generateText = async (prompt) => {
     try {
         const completion = await openai.createChatCompletion({
@@ -20,42 +36,69 @@ export const generateText = async (prompt) => {
             messages: [{ role: 'user', content: prompt }],
           });
           return completion.data.choices[0].message.content;
-        // return result.data.choices[0].text.trim(); // Extract and return the generated text
     } catch (error) {
         console.log(error);
     }
 }
 
-export const saveToFile = async (data, fileName) => {
 
+/**
+ * 
+ * @param {String} data - the generated sample sales chat
+ * @param {String fileName - filename that consists of the users names
+ */
+export const saveToFile = async (data, fileName) => {
     try {
         fs.writeFile(`./chats/${fileName}.txt`, data, (err) => { if (err) throw err; });
-
-        // await fs.writeFileSync(`${fileName}`, data);
         console.log(`Data saved to ${fileName}`);
     } catch (error) {
         console.error(`Error saving data to ${fileName}:`, error);
     }
 }
 
-export const generateAndSaveData = async (prompt, fileName) => {
-    try {
-        const generatedText = await generateText(prompt);
-        await saveToFile(generatedText, fileName);
-    } catch (error) {
-        console.error('Error:', error);
+/**
+ * 
+ * @param {String} filename - filename that consists of the users names
+ * @returns String - A list of sales chatter
+ */
+export const getFileData = async (filename) => {
+    const data = await fs.readFile(`./chats/${filename}`, { encoding: 'utf8' });
+    return data;
+}
+
+export const viewSalesData = async (data) => {
+    console.log("Currently Selected Sales Data: \n");
+
+    if(!data) {
+        console.log(`\nNo Data Selected\n`);
+    } else {
+        console.log(`\n${data}\n`);
+    }
+
+    const answers = await inquirer.prompt([
+        {
+            type: 'list',
+            name: 'viewSalesData',
+            message: 'Currently Selected Sales Data',
+            choices: ['Go back']
+        }
+    ]);
+
+    if (answers.viewSalesData === 'Go back') {
+        return;
     }
 }
 
+/**
+ * Igress Method that will generate and save some sample data
+ */
 export const generateSalesConversation = async () => {
-
     let newPrompt;
     let result;
     newPrompt = await gptPrompt();
     result = await generateText(newPrompt.prompt)
 
     await saveToFile(result, `${newPrompt.nameOne}-${newPrompt.nameTwo}-sale`);
-
 }
 
-export default generateSalesConversation
+export default {generateSalesConversation, viewSalesData};
