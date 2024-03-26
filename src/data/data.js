@@ -2,6 +2,7 @@ import { getRandomFirstName, getRandomItem, getRandomCurrency, getRandomCanadian
 import openai from '../config/open-ai.js';
 import fs from 'node:fs/promises';
 import inquirer from 'inquirer';
+import i18n from '../../internationalization/i18n.config.js';
 
 const chatFolderPath = '../../chats'; 
 
@@ -31,6 +32,10 @@ export const gptPrompt = async () => {
  * @returns Several lines of dialog outlining a Sale
  */
 export const generateText = async (prompt) => {
+    if(i18n.getLocale() === 'es') {
+        prompt += ' Language Spanish';
+    }
+
     try {
         const completion = await openai.createChatCompletion({
             model: 'gpt-3.5-turbo',
@@ -51,7 +56,6 @@ export const generateText = async (prompt) => {
 export const saveToFile = async (data, fileName) => {
     try {
         fs.writeFile(`./chats/${fileName}.txt`, data, (err) => { if (err) throw err; });
-        console.log(`Data saved to ${fileName}`);
     } catch (error) {
         console.error(`Error saving data to ${fileName}:`, error);
     }
@@ -68,10 +72,10 @@ export const getFileData = async (filename) => {
 }
 
 export const viewSalesData = async (data) => {
-    console.log("Currently Selected Sales Data: \n");
+    console.log(i18n.__('CurrentlySelected'));
 
     if(!data) {
-        console.log(`\nNo Data Selected\n`);
+        console.log(i18n.__('NoData'));
     } else {
         console.log(`\n${data}\n`);
     }
@@ -80,12 +84,12 @@ export const viewSalesData = async (data) => {
         {
             type: 'list',
             name: 'viewSalesData',
-            message: 'Press Enter to go back.',
-            choices: ['Go back']
+            message: i18n.__('EnterGoBack'),
+            choices: [i18n.__('EnterGoBack')]
         }
     ]);
 
-    if (answers.viewSalesData === 'Go back') {
+    if (answers.viewSalesData === i18n.__('EnterGoBack')) {
         return;
     }
 }
@@ -99,7 +103,7 @@ export const generateSalesConversation = async () => {
     newPrompt = await gptPrompt();
     result = await generateText(newPrompt.prompt)
 
-    await saveToFile(result, `${newPrompt.nameOne}-${newPrompt.nameTwo}-sale`);
+    await saveToFile(result, `${newPrompt.nameOne}-${newPrompt.nameTwo}-sale-${i18n.getLocale()}`);
 }
 
 

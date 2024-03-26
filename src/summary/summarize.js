@@ -1,7 +1,8 @@
 import inquirer from 'inquirer';
 import openai from '../config/open-ai.js';
+import i18n from '../../internationalization/i18n.config.js';
 
-const summaryPrompt = 'write a summary about this chat between two people, it should be formatted with the Date at the top, the names of the participants, item being sold, original price, final price and time and place their meeting. at the bottom it should be short summary of the whole chat.'
+let summaryPrompt = 'write a summary about this chat between two people, it should be formatted with the Date at the top, the names of the participants, item being sold, original price, final price and time and place their meeting. at the bottom it should be short summary of the whole chat.'
 let summaryResponse;
 export const generateText = async (prompt, data) => {
     try {
@@ -19,9 +20,13 @@ export const generateText = async (prompt, data) => {
 
 export const viewSummary = async (data) => {
     if(!data) {
-        console.log(`\nNo Data Selected\nFirst Select Some Sample Data\n`);
+        console.log(i18n.__('NoDataSelected'));
     } else {
-        console.log(`\nSummary of your selected chat\n\n`);
+        console.log(i18n.__('SummarySelectedChat'));
+
+        if(i18n.getLocale() === 'es') {
+            summaryPrompt += ' Language Spanish';
+        }
         let summary = await generateText(summaryPrompt, data)
         console.log(`\n${summary}\n`);
         summaryResponse = summary
@@ -32,12 +37,12 @@ export const viewSummary = async (data) => {
         {
             type: 'list',
             name: 'viewSummary',
-            message: 'Press enter to go back.',
-            choices: ['Go back']
+            message: i18n.__('EnterGoBack'),
+            choices: [i18n.__('GoBack')]
         }
     ]);
 
-    if (answers.viewSalesData === 'Go back') {
+    if (answers.viewSalesData === i18n.__('GoBack')) {
         return;
     }
 }

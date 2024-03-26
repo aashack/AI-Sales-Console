@@ -1,3 +1,5 @@
+import i18n from '../../internationalization/i18n.config.js';
+
 // Partily AI Generated Code, I used chatgpt to generate arrays of names, websites, cities and nouns to use
 // with my generateSampleData code. I didn't want to spend an hour thinking up all these.
 // The Randomizer is something I put toghether, it will allow it to generate consisted but varied data
@@ -25,6 +27,17 @@ export const ITEMS = [
     'Speakers', 'Gaming Consoles', 'Smartwatches', 'Printers', 'Routers',
     'External Hard Drives', 'Monitors', 'Microphones', 'Projectors', 'Keyboards',
     'Mouse', 'USB Flash Drives', 'Chargers', 'Power Banks', 'Networking Cables'
+];
+
+export const ITEMS_ES = [
+    'Camisetas', 'Jeans', 'Zapatillas deportivas', 'Relojes', 'Bolsos de mano',
+    'Gafas de sol', 'Chaquetas', 'Vestidos', 'Sombreros', 'Cinturones',
+    'Perfumes', 'Bufandas', 'Carteras', 'Botas', 'Joyas',
+    'Trajes', 'Sandalias', 'Mochilas', 'Guantes', 'Paraguas',
+    'Teléfonos inteligentes', 'Laptops', 'Tabletas', 'Audífonos', 'Cámaras',
+    'Altavoces', 'Consolas de juegos', 'Smartwatches', 'Impresoras', 'Enrutadores',
+    'Discos duros externos', 'Monitores', 'Micrófonos', 'Proyectores', 'Teclados',
+    'Mouse', 'Unidades flash USB', 'Cargadores', 'Bancos de energía', 'Cables de red'
 ];
 
 export const CURRENCY = [
@@ -60,6 +73,9 @@ export function getRandomFirstName() {
 
 // Function to get a random item
 export function getRandomItem() {
+    if(i18n.getLocale() === 'es') {
+        return getRandomItemFromArray(ITEMS_ES);
+    }
     return getRandomItemFromArray(ITEMS);
 }
 
@@ -81,6 +97,7 @@ export function getRandomPopularWebsite() {
 export default {
     FIRSTNAMES,
     ITEMS,
+    ITEMS_ES,
     CURRENCY,
     CITIES,
     WEBSITES,
