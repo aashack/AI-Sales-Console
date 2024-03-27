@@ -25,6 +25,7 @@
 	"EnterGoBGoBackack": "EnterGoBGoBackack",
     "PleaseSelectAnOption": "Seleccione una opción a continuación:",
     "GeneratingWait": "Generando ventas de muestra, espere",
-    "Exiting": "Saliendo..."
+    "Exiting": "Saliendo...",
+	"TypeExit": "Escriba Salir para regresar al Menú principal."
 
 }

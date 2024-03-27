@@ -2,8 +2,7 @@ import inquirer from 'inquirer';
 import openai from '../config/open-ai.js';
 import i18n from '../../internationalization/i18n.config.js';
 
-let summaryPrompt = 'write a summary about this chat between two people, it should be formatted with the Date at the top, the names of the participants, item being sold, original price, final price and time and place their meeting. at the bottom it should be short summary of the whole chat.'
-let summaryResponse;
+const summaryPrompt = 'write a summary about this chat between two people, it should be formatted with the Date at the top, the names of the participants, item being sold, original price, final price and time and place their meeting. at the bottom it should be short summary of the whole chat.'
 export const generateText = async (prompt, data) => {
     try {
         const completion = await openai.createChatCompletion({
@@ -29,8 +28,6 @@ export const viewSummary = async (data) => {
         }
         let summary = await generateText(summaryPrompt, data)
         console.log(`\n${summary}\n`);
-        summaryResponse = summary
-
     }
 
     const answers = await inquirer.prompt([
