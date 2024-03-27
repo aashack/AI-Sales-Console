@@ -52,11 +52,20 @@ Create a script that takes a call transcript and a user question as command line
 >`npm start // To run with default language settings`
 >`npm start es // To run with spanish translations` 
 
-## Thought process and pre-planning
+## Thought process, pre-planning and AI usage
 
-I have been doing some exploratory research into the OpenAI library and testing different ways to approach this. I haven't pushed it up to github because I don't want to expose the details of the assignment.
+I have been doing some exploratory research into the OpenAI library and testing different ways to approach this. I haven't pushed it up to github because I don't want to expose the details of the assignment. But I basically broke up the project into four parts.
 
-I will be aproaching this challege by:
+1) Generate a new file with the AI chat.
+2) Feed chat data to a chatbot and have it know the chat contents to answer questions.
+3) Use AI to generate a summary.
+4) Create a menu system to navigate the program and the generated files.
+
+###### AI Usage
+
+I mainly avoided using AI to generate the main code, but I did use it for translating text to spanish in the **es.json** file, generate test data arrays in sampleData.js and translate the **ITEMS** array into spanish.
+
+###### I will be aproaching this challege by:I will be aproaching this challege by:
 
 get existing chat bot to accept indexed Data
 Learn about nodejs CLI tools (inquirer) ensuring that I can access sub menus.
