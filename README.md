@@ -11,6 +11,9 @@ This is a AI powered sales tool that allows you to use chatgpt to:
 1. Use AI to summarize your currently selected sample data.
 1. With a selected Sample chat data, you can use a chatbot to ask questions against the data.
 
+### You will need to add an .ENV file with a valid API key to chatGPT
+
+- If you are using free tier, you will need to pace your commands to the AI portion, the free tier doesn't allow rapid multiple commands.
 
 ###### Language Support
 
@@ -65,7 +68,7 @@ I have been doing some exploratory research into the OpenAI library and testing 
 
 I mainly avoided using AI to generate the main code, but I did use it for translating text to spanish in the **es.json** file, generate test data arrays in sampleData.js and translate the **ITEMS** array into spanish.
 
-###### I will be aproaching this challege by:I will be aproaching this challege by:
+###### I will be aproaching this challege by:
 
 - get existing chat bot to accept indexed Data
 - Learn about nodejs CLI tools (inquirer) ensuring that I can access sub menus.
@@ -75,4 +78,4 @@ I mainly avoided using AI to generate the main code, but I did use it for transl
 - Create the CLI menu with selections and have it capable of running other scripts.
 - Using openAI create a prompt engine that will generate fake chat data, have the prompt select the data and topic at random to give variety and have it save to a file
 - Build a method to summarize a file that was generated, have a pre-made template prompt that will setup the organization structure
-- Have a chat to bot capability that will reference the sales chat
+- Have a chat to bot able to reference the sales chat
