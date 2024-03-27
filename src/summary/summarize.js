@@ -2,7 +2,14 @@ import inquirer from 'inquirer';
 import openai from '../config/open-ai.js';
 import i18n from '../../internationalization/i18n.config.js';
 
+// The AI prompt for generating a summary.
 const summaryPrompt = 'write a summary about this chat between two people, it should be formatted with the Date at the top, the names of the participants, item being sold, original price, final price and time and place their meeting. at the bottom it should be short summary of the whole chat.'
+
+/**
+ * @param {String} prompt 
+ * @param {String} data 
+ * @returns A string summary of the chat data
+ */
 export const generateText = async (prompt, data) => {
     try {
         const completion = await openai.createChatCompletion({
@@ -16,7 +23,11 @@ export const generateText = async (prompt, data) => {
     }
 }
 
-
+/**
+ * 
+ * @param {String} data - The Generated Sample chat
+ * @returns 
+ */
 export const viewSummary = async (data) => {
     if(!data) {
         console.log(i18n.__('NoDataSelected'));

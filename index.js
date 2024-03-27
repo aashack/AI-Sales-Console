@@ -98,6 +98,7 @@ async function askQuestionsAboutData() {
                 break;
             }
 
+            // output of the AI chatbot
             console.log(colors.green(i18n.__('Bot')) + completionText);
 
             // Update chat history
@@ -120,6 +121,7 @@ async function mainMenu() {
     while (true) {
         console.clear();
 
+        // The Main menu Prompt engine.
         const { option } = await inquirer.prompt([
             {
                 type: 'list',
@@ -131,22 +133,28 @@ async function mainMenu() {
 
         // Handle user choice
         switch (option) {
+            // Create a new file with sample data
             case i18n.__('GenerateSampleData'):
                 console.log(i18n.__('GeneratingWait'));
                 await generateSalesConversation();
                 break;
+            // Select from a list of generated files
             case i18n.__('SelectSampleData'):
                 await selectSampleData();
                 break;
+            // View the selected file
             case i18n.__('ViewSalesChat'):
                 await viewSalesData(selectedChatHistory);
                 break;
+            // Summarize the file contents with AI
             case i18n.__('Summarize'):
                 await viewSummary(selectedChatHistory);
                 break;
+            // Use the chatbot to ask the AI questions
             case i18n.__('AskQuestions'):
                 await askQuestionsAboutData();
                 break;
+            // Exit out of program
             case i18n.__('Exit'):
                 console.log(i18n.__('Exiting'));
                 process.exit();

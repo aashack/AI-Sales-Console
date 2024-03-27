@@ -2,8 +2,11 @@ import i18n from '../../internationalization/i18n.config.js';
 
 // Partily AI Generated Code, I used chatgpt to generate arrays of names, websites, cities and nouns to use
 // with my generateSampleData code. I didn't want to spend an hour thinking up all these.
+
 // The Randomizer is something I put toghether, it will allow it to generate consisted but varied data
 // to be used across the application.
+
+// If you started the project with spanish support, it will select the Spanish list of Items (Because the ai generated data looks funny)
 
 
 export const FIRSTNAMES = [
