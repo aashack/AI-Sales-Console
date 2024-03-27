@@ -33,7 +33,9 @@ If you load a spanish chat file while using english translations you can still g
 When starting the project you can specify** 'es' **to enable **spanish** language support. Specifying nothing or en will start it in english.
 
 >`npm start es` spanish
+
 >`npm start en` english
+
 >`npm start` english
 
 #### Project Guidelines
@@ -59,13 +61,16 @@ Create a script that takes a call transcript and a user question as command line
 ## Installation
 
 1) Clone the project (If you require access please email aaron.jh.shack@gmail.com)
+   
 >`git clone git@github.com:aashack/AISales-momentum.git`
 
 2) Install the dependencies
+   
 >`npm i`
 
 3) Start the project
 >`npm start // To run with default language settings`
+
 >`npm start es // To run with spanish translations` 
 
 ## Thought process, pre-planning and AI usage
@@ -77,17 +82,17 @@ I have been doing some exploratory research into the OpenAI library and testing 
 3) Use AI to generate a summary.
 4) Create a menu system to navigate the program and the generated files.
 
-###### AI Usage
+#### AI Usage
 
 I mainly avoided using AI to generate the main code, but I did use it for translating text to spanish in the **es.json** file, generate test data arrays in sampleData.js and translate the **ITEMS** array into spanish.
 
-###### I will be aproaching this challege by:
+#### I will be aproaching this challege by:
 
-- get existing chat bot to accept indexed Data
+- Get existing chat bot i have written to accept indexed Data
 - Learn about nodejs CLI tools (inquirer) ensuring that I can access sub menus.
-- Create and API to save chats to a database, I want the CLI tool to call the API to save the chat history.
+- Research and discover a way to incorperate another language.
 
-###### Building Tasks
+#### Building Tasks
 - Create the CLI menu with selections and have it capable of running other scripts.
 - Using openAI create a prompt engine that will generate fake chat data, have the prompt select the data and topic at random to give variety and have it save to a file
 - Build a method to summarize a file that was generated, have a pre-made template prompt that will setup the organization structure
