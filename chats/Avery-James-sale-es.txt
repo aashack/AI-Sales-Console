@@ -1,0 +1,19 @@
+<10:00> James (yahoo.com): Hola Avery, vi que tienes unos Bancos de energía en venta en eBay. ¿Podrías darme más información sobre ellos?
+
+<10:05> Avery (ebay.com): Hola James, son nuevos y tienen una capacidad de 10,000 mAh. Son perfectos para cargar tus dispositivos en cualquier lugar.
+
+<10:10> James (yahoo.com): Suena genial. ¿Cuál es tu precio por uno de ellos?
+
+<10:15> Avery (ebay.com): Estoy vendiéndolos por 30 CHF cada uno, pero podría hacer un descuento si compras más de uno.
+
+<10:20> James (yahoo.com): Me gustaría comprar dos. ¿Podrías hacerlos por 50 CHF?
+
+<10:25> Avery (ebay.com): Lo siento, 60 CHF es el mejor precio que puedo ofrecerte por ambos.
+
+<10:30> James (yahoo.com): Está bien, acepto. ¿Podemos encontrarnos en Oshawa para la entrega?
+
+<10:35> Avery (ebay.com): Por supuesto, ¿te va bien el próximo viernes por la tarde?
+
+<10:40> James (yahoo.com): Perfecto. Nos vemos entonces y gracias por el buen trato.
+
+<10:45> Avery (ebay.com): Gracias a ti, James. ¡Nos vemos el viernes!

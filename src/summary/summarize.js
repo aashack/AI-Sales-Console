@@ -19,7 +19,9 @@ export const generateText = async (prompt, data) => {
           return completion.data.choices[0].message.content;
         // return result.data.choices[0].text.trim(); // Extract and return the generated text
     } catch (error) {
-        console.log(error);
+        if(error.response.status === 429) {
+            console.error(colors.red('Too Many Requests, free tier chatgpt can only handle so many requests.'));
+        }
     }
 }
 

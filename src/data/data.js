@@ -43,7 +43,9 @@ export const generateText = async (prompt) => {
           });
           return completion.data.choices[0].message.content;
     } catch (error) {
-        console.log(error);
+        if(error.response.status === 429) {
+            console.error(colors.red('Too Many Requests, free tier chatgpt can only handle so many requests.\nTry generating again.'));
+        }
     }
 }
 

@@ -105,7 +105,11 @@ async function askQuestionsAboutData() {
             chatHistory.push(['user', userInput]);
             chatHistory.push(['assistant', completionText]);
         } catch (error) {
-            console.error(colors.red(error));
+            if(error.response.status === 429) {
+                console.error(colors.red('Too Many Requests, free tier chatgpt can only handle so many requests.'));
+            } else {
+                console.log('An Internal Error has Occured.')
+            }
         }
     }
     // Return to main menu
@@ -137,8 +141,15 @@ async function mainMenu() {
                 type: 'list',
                 name: 'option',
                 message: `${i18n.__('Welcome')}\n${fileNotificationText}${i18n.__('PleaseSelectAnOption')}`,
-                choices: [i18n.__('GenerateSampleData'), i18n.__('SelectSampleData'), i18n.__('ViewSalesChat'), i18n.__('Summarize'), i18n.__('AskQuestions'), i18n.__('Exit')]
+                choices: [
+                    i18n.__('GenerateSampleData'), 
+                    i18n.__('SelectSampleData'), 
+                    i18n.__('ViewSalesChat'), 
+                    i18n.__('Summarize'), 
+                    i18n.__('AskQuestions'), 
+                    i18n.__('Exit')]
             }
+
         ]);
 
         // Handle user choice
