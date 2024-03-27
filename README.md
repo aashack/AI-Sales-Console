@@ -12,10 +12,10 @@ This is a AI powered sales tool that allows you to use chatgpt to:
 1. With a selected Sample chat data, you can use a chatbot to ask questions against the data.
 
 
-
 ##### Generated Chat files
 
-- When you generate a new chat file, the language will default to english. If you started the application with spanish all generated files will be in spanish with a designation in the filename
+When you generate a new chat file, the language will default to english. If you started the application with spanish all generated files will be in spanish with a designation in the filename
+
 - Aaron-Katya-sale-en.txt - English
 - Katya-Aaron-sale-es.txt - Spanish
 - They should save in the root project directory inside /chats
@@ -65,10 +65,12 @@ Create a script that takes a call transcript and a user question as command line
 >`git clone git@github.com:aashack/AISales-momentum.git`
 
 2) Install the dependencies
-   
+
 >`npm i`
 
-3) Start the project
+3) Setup your .env file with your openAI Key, you can modify sample.env for the format.
+   
+4) Start the project
 >`npm start // To run with default language settings`
 
 >`npm start es // To run with spanish translations` 
@@ -97,3 +99,11 @@ I mainly avoided using AI to generate the main code, but I did use it for transl
 - Using openAI create a prompt engine that will generate fake chat data, have the prompt select the data and topic at random to give variety and have it save to a file
 - Build a method to summarize a file that was generated, have a pre-made template prompt that will setup the organization structure
 - Have a chat to bot able to reference the sales chat
+
+
+This was testing using both MacOS and Windows Powershell.
+
+Node version: v21.6.1
+
+NPM verison: 10.2.4
+
