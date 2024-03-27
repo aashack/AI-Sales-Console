@@ -114,13 +114,23 @@ async function askQuestionsAboutData() {
 
 // Main menu function
 async function mainMenu() {
+
+    if(!process.env.OPENAI_API_KEY) { 
+        console.log(colors.red('No API Key Detected, Please configure your API key in the .ENV file')); 
+        process.exit();
+    }
+
+
     console.clear();
+
     const fileNotificationText = selectedFile ? `${i18n.__('CurrentSelectedFile')}${colors.green(selectedFile)}\n` : '';
 
     // Display main menu options
     while (true) {
+
         console.clear();
 
+      
         // The Main menu Prompt engine.
         const { option } = await inquirer.prompt([
             {
