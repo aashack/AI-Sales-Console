@@ -13,13 +13,6 @@ This is a AI powered sales tool that allows you to use chatgpt to:
 
 
 
-**(Table of Contents)**
-
-[TOCM]
-
-[TOC]
-
-
 ##### Generated Chat files
 
 - When you generate a new chat file, the language will default to english. If you started the application with spanish all generated files will be in spanish with a designation in the filename
