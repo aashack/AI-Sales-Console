@@ -67,13 +67,12 @@ I mainly avoided using AI to generate the main code, but I did use it for transl
 
 ###### I will be aproaching this challege by:I will be aproaching this challege by:
 
-get existing chat bot to accept indexed Data
-Learn about nodejs CLI tools (inquirer) ensuring that I can access sub menus.
-Create and API to save chats to a database, I want the CLI tool to call the API to save the chat history.
-Dockerize the whole application
-Building Tasks
-Create the CLI menu with selections and have it capable of running other scripts.
-Using openAI create a prompt engine that will generate fake chat data, have the prompt select the data and topic at random to give variety and have it save to a file
-Build a method to summarize a file that was generated, have a pre-made template prompt that will setup the organization structure
-API to save the summary to the database
-Have a chat to bot capability that will reference the sales chat
+- get existing chat bot to accept indexed Data
+- Learn about nodejs CLI tools (inquirer) ensuring that I can access sub menus.
+- Create and API to save chats to a database, I want the CLI tool to call the API to save the chat history.
+
+###### Building Tasks
+- Create the CLI menu with selections and have it capable of running other scripts.
+- Using openAI create a prompt engine that will generate fake chat data, have the prompt select the data and topic at random to give variety and have it save to a file
+- Build a method to summarize a file that was generated, have a pre-made template prompt that will setup the organization structure
+- Have a chat to bot capability that will reference the sales chat
