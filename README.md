@@ -38,24 +38,6 @@ When starting the project you can specify** 'es' **to enable **spanish** languag
 
 >`npm start` english
 
-#### Project Guidelines
-
-**Generate Call Transcripts**
-Create a script to generate sales call transcripts. The call transcripts should be outputted to the console and saved to a file for later use.
-
-Here is an example of what a transcript format should look like:
-
-    00:00:00 Sam (openai.com): Hey there Staya.
-    00:00:02 Satya  (microsoft.com): Hi Sam, how are you?
-    00:00:05 Sam (openai.com): I'm doing good. Do you think you can give us 10000 more GPUs?
-    00:00:06 Satya (microsoft.com): I'm sorry Sam we can't do 10000, how about 5000?
-
-**Summarize Call Transcripts**
-Create a script that takes a transcript file name as input and generates a summary of the key points from the call transcript. Output the summary to the console.
-
-**Answer Questions**
-Create a script that takes a call transcript and a user question as command line arguments and answers the user’s question in relation to the call transcript. For example, it should answer a question like “What product was the customer interested in?”. Output the answer to the console.
-
 ------------
 
 ## Installation
@@ -74,31 +56,6 @@ Create a script that takes a call transcript and a user question as command line
 >`npm start // To run with default language settings`
 
 >`npm start es // To run with spanish translations` 
-
-## Thought process, pre-planning and AI usage
-
-I have been doing some exploratory research into the OpenAI library and testing different ways to approach this. I haven't pushed it up to github because I don't want to expose the details of the assignment. But I basically broke up the project into four parts.
-
-1) Generate a new file with the AI chat.
-2) Feed chat data to a chatbot and have it know the chat contents to answer questions.
-3) Use AI to generate a summary.
-4) Create a menu system to navigate the program and the generated files.
-
-#### AI Usage
-
-I mainly avoided using AI to generate the main code, but I did use it for translating text to spanish in the **es.json** file, generate test data arrays in sampleData.js and translate the **ITEMS** array into spanish.
-
-#### I will be aproaching this challege by:
-
-- Get existing chat bot i have written to accept indexed Data
-- Learn about nodejs CLI tools (inquirer) ensuring that I can access sub menus.
-- Research and discover a way to incorperate another language.
-
-#### Building Tasks
-- Create the CLI menu with selections and have it capable of running other scripts.
-- Using openAI create a prompt engine that will generate fake chat data, have the prompt select the data and topic at random to give variety and have it save to a file
-- Build a method to summarize a file that was generated, have a pre-made template prompt that will setup the organization structure
-- Have a chat to bot able to reference the sales chat
 
 
 This was testing using both MacOS and Windows Powershell.
