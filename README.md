@@ -44,7 +44,7 @@ When starting the project you can specify** 'es' **to enable **spanish** languag
 
 1) Clone the project (If you require access please email aaron.jh.shack@gmail.com)
    
->`git clone git@github.com:aashack/AISales-momentum.git`
+>`git clone git@github.com:aashack/AI-Sales-Console.git`
 
 2) Install the dependencies
 
